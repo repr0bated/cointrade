@@ -1,0 +1,2592 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cointrade evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "chain_id",
+    "token",
+    "pool",
+    "assessed_at",
+    "origin",
+    "measurements"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "chain_id": {
+      "const": 4663
+    },
+    "token": {
+      "type": "string",
+      "pattern": "^0x[0-9a-f]{40}$"
+    },
+    "pool": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^0x([0-9a-f]{40}|[0-9a-f]{64})$"
+    },
+    "assessed_at": {
+      "type": "number",
+      "minimum": 0
+    },
+    "origin": {
+      "enum": [
+        "collector",
+        "legacy_adapter"
+      ]
+    },
+    "measurements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "market.price",
+        "market.liquidity",
+        "quote.quantity",
+        "quote.usd_in",
+        "simulation.passed",
+        "simulation.buy_shortfall",
+        "simulation.sell_shortfall",
+        "simulation.roundtrip_loss",
+        "holders.raw_top10",
+        "holders.adjusted_top10",
+        "buyers.distinct",
+        "buyers.qualified",
+        "buyers.total",
+        "buyers.reviewed",
+        "buyers.pending",
+        "buyers.ambiguous",
+        "buyers.coverage",
+        "liquidity.lp_supply",
+        "liquidity.lp_burned",
+        "source.verified",
+        "controls.is_honeypot",
+        "controls.cannot_buy",
+        "controls.cannot_sell_all",
+        "controls.is_mintable",
+        "controls.is_proxy",
+        "controls.is_blacklisted",
+        "controls.is_whitelisted",
+        "controls.transfer_pausable",
+        "controls.slippage_modifiable",
+        "controls.personal_slippage_modifiable",
+        "controls.hidden_owner",
+        "controls.owner_change_balance",
+        "controls.can_take_back_ownership",
+        "controls.selfdestruct"
+      ],
+      "properties": {
+        "market.price": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "USD/token"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "market.liquidity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "USD"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "quote.quantity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "token"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "quote.usd_in": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "USD"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "simulation.passed": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "boolean"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "simulation.buy_shortfall": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "fraction"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "simulation.sell_shortfall": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "fraction"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "simulation.roundtrip_loss": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "maximum": 1
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "fraction"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "holders.raw_top10": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "fraction"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "holders.adjusted_top10": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "fraction"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "buyers.distinct": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "wallets"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "buyers.qualified": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "wallets"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "buyers.total": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "transactions"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "buyers.reviewed": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "transactions"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "buyers.pending": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "transactions"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "buyers.ambiguous": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "transactions"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "buyers.coverage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "fraction"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "liquidity.lp_supply": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[0-9]+$"
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "atomic LP tokens"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "liquidity.lp_burned": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "fraction"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "source.verified": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "boolean"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.is_honeypot": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.cannot_buy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.cannot_sell_all": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.is_mintable": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.is_proxy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.is_blacklisted": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.is_whitelisted": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.transfer_pausable": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.slippage_modifiable": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.personal_slippage_modifiable": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.hidden_owner": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.owner_change_balance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.can_take_back_ownership": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "controls.selfdestruct": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "status",
+            "reason",
+            "source",
+            "observed_at",
+            "block_number",
+            "block_hash",
+            "unit",
+            "scope"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "measured",
+                "partial",
+                "missing",
+                "error",
+                "undefined",
+                "not_applicable"
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "observed_at": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_number": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "block_hash": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^0x[0-9a-fA-F]{64}$"
+            },
+            "unit": {
+              "const": "risk flag"
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

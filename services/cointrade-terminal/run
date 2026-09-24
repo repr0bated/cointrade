@@ -1,0 +1,5 @@
+#!/bin/sh
+exec chpst -u jeremy:jeremy /usr/bin/env -i \
+  HOME=/home/jeremy USER=jeremy LOGNAME=jeremy LANG=C.UTF-8 \
+  PATH=/usr/local/bin:/usr/bin:/bin \
+  /bin/bash -c 'exec /srv/git/cointrade/scripts/start-terminal.sh >> /srv/git/cointrade/data/terminal.log 2>&1'

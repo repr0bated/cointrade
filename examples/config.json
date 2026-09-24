@@ -1,0 +1,21 @@
+{
+  "bankroll": 40.0,
+  "reserve": 10.0,
+  "position_size": 2.0,
+  "max_exposure": 30.0,
+  "halt_equity": 20.0,
+  "max_positions": 5,
+  "fee_bps": 30.0,
+  "slippage_bps": 100.0,
+  "network_fee": 0.005,
+  "stop_loss": 0.15,
+  "take_profit": 0.25,
+  "max_hold_seconds": 3600,
+  "max_snapshot_age": 120,
+  "cooldown_seconds": 3600,
+  "min_liquidity": 25000.0,
+  "min_volume_h24": 10000.0,
+  "min_age_seconds": 3600,
+  "max_top10_share": 0.5,
+  "min_score": 65.0
+}
